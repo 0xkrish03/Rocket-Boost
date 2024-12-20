@@ -2,9 +2,15 @@ using System;
 using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    int currentScene;
+    private void Awake()
+    {
+        currentScene = SceneManager.GetActiveScene().buildIndex;
+    }
     private void OnCollisionEnter(Collision other)
     {
         string tag = other.gameObject.tag;
@@ -14,15 +20,27 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("Bumped into a friendly Game Object");
                 break;
             case "Finish":
-                Debug.Log("Congrats you finished the game");
+                LoadNextScene();
                 break;
             case "Fuel":
                 Debug.Log("You gained extra points");
                 break;
             default:
-                Debug.Log("You Exploded");
-
+                ReloadScene(currentScene);
                 break;
         }
+    }
+    private void ReloadScene(int sceneindex)
+    {
+        SceneManager.LoadScene(sceneindex);
+    }
+    private void LoadNextScene()
+    {
+        currentScene++;
+        if (currentScene == 3)
+        {
+            currentScene = 0;
+        }
+        ReloadScene(currentScene);
     }
 }
