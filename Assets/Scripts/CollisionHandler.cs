@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     int currentScene;
+    [SerializeField] float delay = 2f;
     private void Awake()
     {
         currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -14,33 +15,47 @@ public class CollisionHandler : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         string tag = other.gameObject.tag;
-        switch (tag)
+        if (GetComponent<Movement>().enabled)
         {
-            case "Friendly":
-                Debug.Log("Bumped into a friendly Game Object");
-                break;
-            case "Finish":
-                LoadNextScene();
-                break;
-            case "Fuel":
-                Debug.Log("You gained extra points");
-                break;
-            default:
-                ReloadScene(currentScene);
-                break;
+
+            switch (tag)
+            {
+                case "Friendly":
+                    Debug.Log("Bumped into a friendly Game Object");
+                    break;
+                case "Finish":
+                    SceneDelayManager();
+                    break;
+                case "Fuel":
+                    Debug.Log("You gained extra points");
+                    break;
+                default:
+                    StartCrashSquence();
+                    break;
+            }
         }
     }
-    private void ReloadScene(int sceneindex)
+    void SceneDelayManager()
     {
-        SceneManager.LoadScene(sceneindex);
+        Invoke("LoadNextScene", delay);
     }
-    private void LoadNextScene()
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(currentScene);
+    }
+    void LoadNextScene()
     {
         currentScene++;
         if (currentScene == 3)
         {
             currentScene = 0;
         }
-        ReloadScene(currentScene);
+        GetComponent<Movement>().enabled = false;
+        ReloadScene();
+    }
+    void StartCrashSquence()
+    {
+        GetComponent<Movement>().enabled = false;
+        Invoke("ReloadScene", delay);
     }
 }
