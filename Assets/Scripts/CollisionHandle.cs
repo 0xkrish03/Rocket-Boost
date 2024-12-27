@@ -7,9 +7,12 @@ public class CollisionHandle : MonoBehaviour
     int currentScene;
     [SerializeField] float delay = 2f;
     [SerializeField] AudioClip crashSound;
-    [SerializeField] AudioClip finishSound;
+    [SerializeField] AudioClip successSound;
     private bool hasCrashed = false; // Flag to prevent repeated collision handling
     AudioSource audioSource;
+    [SerializeField] ParticleSystem successParticle;
+    [SerializeField] ParticleSystem crashParticle;
+
 
     bool controllable = true;
 
@@ -58,7 +61,8 @@ public class CollisionHandle : MonoBehaviour
         audioSource.Stop();
         Debug.Log("Finish line reached. Loading next scene...");
         GetComponent<Movement>().enabled = false; // Disable movement
-        audioSource.PlayOneShot(finishSound);
+        audioSource.PlayOneShot(successSound);
+        successParticle.Play();
         Invoke(nameof(LoadNextScene), delay);
     }
 
@@ -72,6 +76,7 @@ public class CollisionHandle : MonoBehaviour
         Debug.Log("Crash occurred. Reloading scene...");
         GetComponent<Movement>().enabled = false; // Disable movement
         audioSource.PlayOneShot(crashSound);
+        crashParticle.Play();
         Invoke(nameof(ReloadScene), delay);
     }
 
