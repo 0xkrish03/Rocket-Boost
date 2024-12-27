@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6895337749216221278}
   - component: {fileID: 1256160589297335513}
+  - component: {fileID: 7812592853724697350}
   - component: {fileID: 6901569461711073877}
   - component: {fileID: 1894413986695296927}
   - component: {fileID: 7563084929189525128}
-  - component: {fileID: 5298423393056161364}
   m_Layer: 0
   m_Name: Player Rocket
   m_TagString: Untagged
@@ -101,6 +101,19 @@ MonoBehaviour:
     m_Flags: 0
   thrustManager: 250
   rotationStrength: 150
+--- !u!114 &7812592853724697350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4358974658858243684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88e58d89e1ef4654b0bd29a1f58c616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 2
 --- !u!54 &6901569461711073877
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -246,18 +259,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5298423393056161364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4358974658858243684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621f4220d0ec743da907e119936f4799, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2005423093255393899
 PrefabInstance:
   m_ObjectHideFlags: 0
