@@ -878,18 +878,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1256160589297335513, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1256160589297335513, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: mainEngine
-      value: 
-      objectReference: {fileID: 8300000, guid: b2e54d154e7f1422b9a18384fd8d0b71, type: 3}
-    - target: {fileID: 1256160589297335513, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: thrustManager
-      value: 450
-      objectReference: {fileID: 0}
     - target: {fileID: 4358974658858243684, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
       propertyPath: m_Name
       value: Player Rocket
@@ -934,36 +922,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7563084929189525128, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: MinDistance
-      value: 0.6965444
-      objectReference: {fileID: 0}
-    - target: {fileID: 7563084929189525128, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: DopplerLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7563084929189525128, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7563084929189525128, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].time
-      value: 0.5115299
-      objectReference: {fileID: 0}
-    - target: {fileID: 7563084929189525128, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0.5741577
-      objectReference: {fileID: 0}
-    - target: {fileID: 7812592853724697350, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: crashSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 2dc206ee38dae465b871519417177041, type: 3}
-    - target: {fileID: 7812592853724697350, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
-      propertyPath: finishSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 48a8eb06253bc4271b93ac7aaa41ac29, type: 3}
-    m_RemovedComponents:
-    - {fileID: 5298423393056161364, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -979,5 +938,5 @@ SceneRoots:
   - {fileID: 1830630985}
   - {fileID: 3260343759955669700}
   - {fileID: 661365561}
-  - {fileID: 8149849340158009241}
   - {fileID: 53880634686363292}
+  - {fileID: 8149849340158009241}
