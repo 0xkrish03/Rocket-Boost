@@ -99,8 +99,9 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 8
     m_Flags: 0
-  thrustManager: 250
+  thrustManager: 450
   rotationStrength: 150
+  mainEngine: {fileID: 8300000, guid: b2e54d154e7f1422b9a18384fd8d0b71, type: 3}
 --- !u!114 &7812592853724697350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 2
+  crashSound: {fileID: 8300000, guid: 2dc206ee38dae465b871519417177041, type: 3}
+  finishSound: {fileID: 8300000, guid: 48a8eb06253bc4271b93ac7aaa41ac29, type: 3}
 --- !u!54 &6901569461711073877
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -183,7 +186,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.6965444
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -218,8 +221,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0.5
+      time: 0.5115299
+      value: 0.5741577
       inSlope: 0
       outSlope: 0
       tangentMode: 0

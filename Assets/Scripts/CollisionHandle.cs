@@ -6,12 +6,18 @@ public class CollisionHandle : MonoBehaviour
 {
     int currentScene;
     [SerializeField] float delay = 2f;
+    [SerializeField] AudioClip crashSound;
+    [SerializeField] AudioClip finishSound;
     private bool hasCrashed = false; // Flag to prevent repeated collision handling
+    AudioSource audioSource;
+
+    bool controllable = true;
 
     private void Awake()
     {
         currentScene = SceneManager.GetActiveScene().buildIndex;
         GetComponent<Movement>().enabled = true; // Enable movement
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -21,27 +27,26 @@ public class CollisionHandle : MonoBehaviour
         string tag = other.gameObject.tag;
 
         // Only handle collisions if movement is enabled
-        if (GetComponent<Movement>().enabled)
+        if (!controllable) return;
+        switch (tag)
         {
-            switch (tag)
-            {
-                case "Friendly":
-                    Debug.Log("Bumped into a friendly Game Object");
-                    break;
+            case "Friendly":
+                Debug.Log("Bumped into a friendly Game Object");
+                break;
 
-                case "Finish":
-                    HandleFinishCollision();
-                    break;
+            case "Finish":
+                HandleFinishCollision();
+                break;
 
-                case "Fuel":
-                    Debug.Log("You gained extra points");
-                    break;
+            case "Fuel":
+                Debug.Log("You gained extra points");
+                break;
 
-                default:
-                    HandleCrashCollision();
-                    break;
-            }
+            default:
+                HandleCrashCollision();
+                break;
         }
+
     }
 
     private void HandleFinishCollision()
@@ -49,8 +54,11 @@ public class CollisionHandle : MonoBehaviour
         if (hasCrashed) return; // Prevent multiple executions
         hasCrashed = true;
 
+        controllable = false;
+        audioSource.Stop();
         Debug.Log("Finish line reached. Loading next scene...");
         GetComponent<Movement>().enabled = false; // Disable movement
+        audioSource.PlayOneShot(finishSound);
         Invoke(nameof(LoadNextScene), delay);
     }
 
@@ -59,8 +67,11 @@ public class CollisionHandle : MonoBehaviour
         if (hasCrashed) return; // Prevent multiple executions
         hasCrashed = true;
 
+        controllable = false;
+        audioSource.Stop();
         Debug.Log("Crash occurred. Reloading scene...");
         GetComponent<Movement>().enabled = false; // Disable movement
+        audioSource.PlayOneShot(crashSound);
         Invoke(nameof(ReloadScene), delay);
     }
 

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 771e29938b4994fcbbd1c68e0b261867, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -882,6 +882,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1256160589297335513, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
+      propertyPath: mainEngine
+      value: 
+      objectReference: {fileID: 8300000, guid: b2e54d154e7f1422b9a18384fd8d0b71, type: 3}
+    - target: {fileID: 1256160589297335513, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
+      propertyPath: thrustManager
+      value: 450
+      objectReference: {fileID: 0}
     - target: {fileID: 4358974658858243684, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
       propertyPath: m_Name
       value: Player Rocket
@@ -946,6 +954,14 @@ PrefabInstance:
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0.5741577
       objectReference: {fileID: 0}
+    - target: {fileID: 7812592853724697350, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
+      propertyPath: crashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2dc206ee38dae465b871519417177041, type: 3}
+    - target: {fileID: 7812592853724697350, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
+      propertyPath: finishSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 48a8eb06253bc4271b93ac7aaa41ac29, type: 3}
     m_RemovedComponents:
     - {fileID: 5298423393056161364, guid: 44b6e783637be4f57984232f2ab5ec58, type: 3}
     m_RemovedGameObjects: []
