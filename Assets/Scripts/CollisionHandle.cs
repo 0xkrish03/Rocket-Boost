@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandle : MonoBehaviour
@@ -8,7 +9,8 @@ public class CollisionHandle : MonoBehaviour
     [SerializeField] float delay = 2f;
     [SerializeField] AudioClip crashSound;
     [SerializeField] AudioClip successSound;
-    private bool hasCrashed = false; // Flag to prevent repeated collision handling
+    private bool isControllable = false; // Flag to prevent repeated collision handling
+    bool isCollidable = true;
     AudioSource audioSource;
     [SerializeField] ParticleSystem successParticle;
     [SerializeField] ParticleSystem crashParticle;
@@ -22,10 +24,25 @@ public class CollisionHandle : MonoBehaviour
         GetComponent<Movement>().enabled = true; // Enable movement
         audioSource = GetComponent<AudioSource>();
     }
-
+    private void Update()
+    {
+        RespondToDebugKeys();
+    }
+    private void RespondToDebugKeys()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            LoadNextScene();
+        }
+        else if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            isCollidable = !isCollidable;
+            Debug.Log($"colliding :{isCollidable}");
+        }
+    }
     private void OnCollisionEnter(Collision other)
     {
-        if (hasCrashed) return; // Prevent handling collisions if a crash sequence has started
+        if (isControllable || !isCollidable) return; // Prevent handling collisions if a crash sequence has started
 
         string tag = other.gameObject.tag;
 
@@ -54,8 +71,8 @@ public class CollisionHandle : MonoBehaviour
 
     private void HandleFinishCollision()
     {
-        if (hasCrashed) return; // Prevent multiple executions
-        hasCrashed = true;
+        if (isControllable) return; // Prevent multiple executions
+        isControllable = true;
 
         controllable = false;
         audioSource.Stop();
@@ -68,8 +85,8 @@ public class CollisionHandle : MonoBehaviour
 
     private void HandleCrashCollision()
     {
-        if (hasCrashed) return; // Prevent multiple executions
-        hasCrashed = true;
+        if (isControllable) return; // Prevent multiple executions
+        isControllable = true;
 
         controllable = false;
         audioSource.Stop();

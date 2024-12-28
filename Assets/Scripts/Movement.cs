@@ -37,35 +37,56 @@ public class Movement : MonoBehaviour
     {
         if (thrust.IsPressed())
         {
-            rb.AddRelativeForce(Vector3.up * thrustManager * Time.fixedDeltaTime);
-            if (!audioSource.isPlaying)
-                audioSource.PlayOneShot(mainEngine);
-            mainEngineParticle.Play();
+            StartThrusting();
         }
         else
         {
-            audioSource.Stop();
-            mainEngineParticle.Stop();
+            StopThrusting();
         }
     }
+    private void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * thrustManager * Time.fixedDeltaTime);
+        if (!audioSource.isPlaying)
+            audioSource.PlayOneShot(mainEngine);
+        mainEngineParticle.Play();
+    }
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainEngineParticle.Stop();
+    }
+
     private void Rotating()
     {
         float rotationInput = rotation.ReadValue<float>();
         if (rotationInput > 0)
         {
-            ForRoatating(-1);
-            leftThrusterParticle.Play();
+            LeftThruster();
         }
         else if (rotationInput < 0)
         {
-            ForRoatating(1);
-            rightThrusterParticle.Play();
+            RightThruster();
         }
         else
         {
-            leftThrusterParticle.Stop();
-            rightThrusterParticle.Stop();
+            StopThrusterParticles();
         }
+    }
+    private void LeftThruster()
+    {
+        ForRoatating(-1);
+        leftThrusterParticle.Play();
+    }
+    private void RightThruster()
+    {
+        ForRoatating(1);
+        rightThrusterParticle.Play();
+    }
+    private void StopThrusterParticles()
+    {
+        leftThrusterParticle.Stop();
+        rightThrusterParticle.Stop();
     }
 
     private void ForRoatating(float b)
